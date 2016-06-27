@@ -3,11 +3,11 @@ To generate data:
 > bash data_pipeline.sh
 
 1000 wav files by default, can change in generate_midi.js
-Final data is in mixed/
+Final data is in mixed_files/
 
 To train neural network:
 
-> cp ../train.py mixed/
-> cd mixed
+> cp ../train.py mixed_files/
+> cd mixed_files
 > python3 train.py
 
