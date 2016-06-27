@@ -1,0 +1,15 @@
+{
+  "name": "securepair",
+  "version": "1.0.0",
+  "description": "A library to securely pair devices using Bluetooth and audio",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brad Girardeau",
+  "license": "ISC"
+}
