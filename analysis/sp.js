@@ -24,7 +24,10 @@
  *     correlations[note] ->
  *       Number [correlation coefficient for note]
  */
+
+var window = window || {}
 var SP = SP || {}
+if (typeof module !== 'undefined') module.exports = SP
 
 SP.Audio = (function (SP, MIDI, OfflineAudioContext) {
   var audioChannel = {
@@ -295,7 +298,7 @@ SP.Bluetooth = {
  *       sharedKey.encrypt(message)
  *       sharedKey.decrypt(ciphertext)
  */
-var nacl_factory = window.nacl_factory || require('./js/vendor/nacl_factory')
+var nacl_factory = window.nacl_factory || require('./test/js/vendor/nacl_factory.js')
 
 var SP = SP || {}
 
@@ -307,9 +310,10 @@ SP.Crypto = (function (SP, window_crypto, nacl_factory) {
   var SAS_RANDOM_SIZE = 3
 
   var getRandomBytes = function (bytes) {
-    var random = new Uint8Array(bytes)
-    window_crypto.getRandomValues(random)
-    return random
+    return nacl.random_bytes(bytes)
+    // var random = new Uint8Array(bytes)
+    // window_crypto.getRandomValues(random)
+    // return random
   }
 
   var getRandomHexBytes = function (bytes) {

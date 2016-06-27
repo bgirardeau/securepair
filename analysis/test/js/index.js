@@ -4,26 +4,11 @@
 var ndarrayWav = require('ndarray-wav')
 var path = require('path')
 var fs = require('fs')
+var SP = SP || require('../../sp.js')
 
-var SP = SP || {}
-
-var app = (function (SP, Midi, async, MIDI, $, AudioContext, document) {
-  var midi = new Midi()
+var app = (function (SP, async, MIDI, $, AudioContext, document) {
   var channel = SP.Audio.create()
   var inputBlockSize = 1024
-
-  var generateRandomMatchWav = function (filename) {
-    var matchValue = SP.Crypto.getRandomBytes(SP.Crypto.SAS_RANDOM_SIZE)
-    var bits = SP.Util.intToString(parseInt(matchValue, 16), 2, SP.Crypto.SAS_RANDOM_SIZE * 8)
-    var notes = channel.getNotes(bits)
-    if (typeof filename === 'undefined') {
-      filename = ''
-      for (var i = 0; i < notes.length; i++) {
-        filename += notes[i]
-      }
-    }
-    midi.newFile(notes, channel.noteDuration, filename)
-  }
 
   var testWav = function (filepath, callback) {
     // console.log('*********')
@@ -160,12 +145,6 @@ var app = (function (SP, Midi, async, MIDI, $, AudioContext, document) {
         }
         console.log('result: ' + success + '/' + results.length + ' with confidence ' + total_votes / success)
       })
-      /* testWav('wav_files/7272727275757683.wav', function (err, result) {
-        console.log('* ' + found)
-      }) */
-      /* for (var i = 0; i < 10000; i++) {
-        generateRandomMatchWav()
-      } */
     }
   }
-})(SP, window.Midi, window.async, window.MIDI, window.jQuery, window.AudioContext, document)
+})(SP, window.async, window.MIDI, window.jQuery, window.AudioContext, document)

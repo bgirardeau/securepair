@@ -1,12 +1,8 @@
 var fs = require('fs')
 var jsmidgen = require('jsmidgen')
 
-var SP = SP || {}
-
-var Midi = function () {
-  var d = new Date()
-  this.t = d.getTime()
-  // fs.mkdirSync('midi_files/' + this.t)
+var Midi = function (directory) {
+  this.dir = directory || 'midi_files/'
 }
 
 // notes is an array of notes, e.g. [67, 70, 72]
@@ -18,7 +14,7 @@ Midi.prototype.addNotes = function (notes, duration) {
 }
 
 Midi.prototype.writeFile = function (name) {
-  fs.writeFileSync('midi_files/' + name + '.mid', this.file.toBytes(), 'binary')
+  fs.writeFileSync(this.dir + name + '.mid', this.file.toBytes(), 'binary')
 }
 
 Midi.prototype.newFile = function (notes, duration, name) {
@@ -27,7 +23,6 @@ Midi.prototype.newFile = function (notes, duration, name) {
   this.track.setTempo(60)
   this.file.addTrack(this.track)
 
-  this.time = 0
   if (typeof notes !== 'undefined') {
     this.addNotes(notes, duration)
     if (typeof name !== 'undefined') {
