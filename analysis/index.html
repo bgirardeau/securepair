@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Secure Audio Pairing</title>
+  </head>
+  <body>
+    <h1> Testing </h1>
+      <h2> Log </h2>
+      <i><div id='log'> </div></i>
+    <p>
+      <button class='.btn-default' style='display:none' id="listen">Listen</button>
+      <button class='.btn-default' style='display:none' id="pair">Test Locally</button>
+    </p>
+    <p>
+      <h2> Pairing Details </h2>
+      <i> <div id='pairing-result'></div></i>
+      <canvas id="features" width="768" height="512"></canvas>
+    </p>
+
+    <!-- external libraries -->
+    <script type="text/javascript" src="js/vendor/async.min.js"></script>
+    <script type="text/javascript" src="js/vendor/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/vendor/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/vendor/midi/inc/shim/Base64.js"></script>
+    <script type="text/javascript" src="js/vendor/midi/inc/shim/Base64binary.js"></script>
+    <script type="text/javascript" src="js/vendor/midi/inc/shim/WebAudioAPI.js"></script>
+    <script type="text/javascript" src="js/vendor/midi/js/midi/audioDetect.js"></script>
+    <script type="text/javascript" src="js/vendor/midi/js/midi/gm.js"></script>
+    <script type="text/javascript" src="js/vendor/midi/js/midi/loader.js"></script>
+    <script type="text/javascript" src="js/vendor/midi/js/midi/plugin.webaudio.js"></script>
+    <script type="text/javascript" src="js/vendor/midi/js/util/dom_request_xhr.js"></script>
+    <script type="text/javascript" src="js/vendor/midi/js/util/dom_request_script.js"></script>
+    <!-- application code -->
+    <script type="text/javascript" src="js/analysis.js"></script>
+    <script type="text/javascript" src="js/midi.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+      app.initialize()
+    </script>
+  </body>
+</html>

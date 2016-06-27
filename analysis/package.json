@@ -1,0 +1,12 @@
+{
+  "name": "securepair-analysis",
+  "version": "1.0.0",
+  "main": "index.html",
+  "dependencies": {
+    "nw": "^0.12.3",
+    "jsmidgen": "^0.1.4"
+  },
+  "scripts": {
+    "start": "nw"
+  }
+}
