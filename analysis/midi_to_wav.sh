@@ -1,1 +1,1 @@
-for f in midi_files/*; do fluidsynth -F "wav_files/`basename $f .mid`.wav"  ~/Downloads/strum-amor-master/recognition/data/soundfonts/Scc1t2_Piano_1.sf2 "$f"; done
+for f in midi_files/*; do fluidsynth -F "wav_files/`basename $f .mid`.wav"  soundfont/Scc1t2_Piano_1.sf2 "$f"; done
