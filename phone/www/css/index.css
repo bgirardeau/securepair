@@ -1,0 +1,11 @@
+.vertical-center {
+    display: flex;
+}
+
+.title-row {
+  margin-top: 80px;
+}
+
+.control-row {
+  margin-top: 10px;
+}
