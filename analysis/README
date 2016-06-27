@@ -1,0 +1,4 @@
+To generate data and train neural network, see data/README.
+
+The 'test/' directory probably isn't useful/doesn't work yet.
+

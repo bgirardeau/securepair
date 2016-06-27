@@ -20,11 +20,8 @@ def loadData():
             __file__)))
     X = np.load(open(path + '/X.npy', 'rb'), encoding="bytes")
     y = np.load(open(path + '/y.npy', 'rb'), encoding="bytes")
-    x_clean = np.load(open(path + '/x_data.np', 'rb'), encoding="bytes")
-    y_clean = np.load(open(path + '/y_data.np', 'rb'), encoding="bytes")
     y = np.reshape(np.repeat(y, X.shape[1], axis=0), (y.shape[0], X.shape[1], y.shape[1]))
-    y_clean = np.reshape(np.repeat(y_clean, x_clean.shape[1], axis=0), (y_clean.shape[0], x_clean.shape[1], y_clean.shape[1]))
-    return X, y, x_clean, y_clean
+    return X, y
 
 def compileModel(hidden_layers, shape):
     model = Sequential()
@@ -49,11 +46,9 @@ def fit(model, X_train, y_train, X_test, y_test, verbose=2):
       print("Score: ", score)
 
 def main():
-    X, y, x_clean, y_clean = loadData()
+    X, y = loadData()
     print('loaded X,y')
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.05)
-    X_train = np.concatenate((X_train, x_clean))
-    y_train = np.concatenate((y_train, y_clean))
     model = compileModel(300, X[0].shape)
     print('compiled model, fitting..')
     fit(model, X_train, y_train, X_test, y_test, verbose=2)
