@@ -7,6 +7,4 @@ node generate_midi.js
 
 for f in midi_files/*; do bash midi_to_wav.sh $f wav_files/; done
 for f in wav_files/*; do bash mix_with_noise.sh $f mix_files/ 12 noise/babble-rs-2.wav; done
-cd mix_files
-python3 ../make_dataset.py
-
+python3 make_dataset.py ./mix_files/
