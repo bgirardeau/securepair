@@ -1,0 +1,3 @@
+[submodule "learning/seqmodels"]
+	path = learning/seqmodels
+	url = git://github.com/rajpurkar/seqmodels
