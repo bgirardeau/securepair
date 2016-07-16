@@ -34,7 +34,7 @@ source data_pipeline.sh
 ###Train Neural Network
 To run neural net, use:
 ```bash
-python3 train.py ./data/
+python train.py ./data/
 ```
 To force use the cpu:
 ```THEANO_FLAGS=device=cpu python train.py data``` (for cpu)

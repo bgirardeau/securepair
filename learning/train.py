@@ -20,7 +20,8 @@ def loadData(path):
 
 def compileModel(hidden_layers, shape):
     model = Sequential()
-    model.add(GRU(hidden_layers, input_dim=shape[1], input_length=shape[0], return_sequences = True))
+    model.add(LSTM(hidden_layers, input_dim=shape[1], input_length=shape[0], return_sequences = True))
+    model.add(LSTM(hidden_layers, input_dim=shape[1], input_length=shape[0], return_sequences = True, go_backwards=True))
     model.add(BatchNormalization())
     model.add(TimeDistributed(Dense(num_classes)))
     model.add(Activation('softmax'))
