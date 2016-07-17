@@ -1,6 +1,7 @@
 """Main."""
 import evaluate, process, visualize
-import seqmodels
+from seqmodels import load
+from model import BestModel
 
 import numpy as np
 import sys
@@ -14,16 +15,14 @@ def run_pipeline(data_folder):
     """
     print("Loading dataset...\n")
     processor = process.Processor()
-    dl = seqmodels.load.Loader(data_folder, processor)
+    dl = load.Loader(data_folder, processor)
 
     x_train = dl.get_x_train()
     y_train = dl.get_y_train()
     print("Training size: " + str(len(x_train)) + " examples.")
 
-    visualize.visualize_sample(x_train[0], y_train[0])
-
     print("Train Model...\n")
-    model = seqmodels.BestModel()
+    model = BestModel()
     model.train(x_train, y_train)
 
     print("\nEvaluating training set...\n")
