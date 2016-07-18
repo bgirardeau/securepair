@@ -1,6 +1,11 @@
 """Processor module."""
 import json
 import numpy as np
+import glob
+import os
+
+import scipy.io.wavfile
+from tqdm import tqdm
 
 
 class Processor(object):
@@ -10,7 +15,8 @@ class Processor(object):
         self.SUBSAMPLE = 8
 
     def _get_raw(self, data_folder):
-        for f in glob.glob(data_folder + '/*.wav'):
+        print("Loading files...")
+        for f in tqdm(glob.glob(data_folder + '/*.wav')):
             sr, x = scipy.io.wavfile.read(f)
             assert sr == self.SAMPLE_RATE
             y_str = os.path.basename(f).split('-')[0]
@@ -24,6 +30,10 @@ class Processor(object):
             time_x = np.array(range(len(x))) / self.SAMPLE_RATE
             time_y = (np.array(range(len(y))) + 0.5) *  time_x[-1] / len(y)
             yield (np.column_stack((x, time_x)), np.column_stack((y, time_y)))
+
+    def _subsample(self, x_y_pairs):
+        for x, y in x_y_pairs:
+            yield (x[::self.SUBSAMPLE], y)
 
     def load_xy_pairs(self, data_folder):
         """Run the pipeline to load the dataset given a filename."""
