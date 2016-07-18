@@ -7,3 +7,9 @@ class BestModel(WindowBasedModel):
         frame_model = RecurrentModel()
         combiner_model = CombinerModel()
         super().__init__(frame_model, combiner_model)
+
+        self.left_epsilon=0.05
+        self.right_epsilon=0.05
+        self.only_positive=True
+        self.X_TIME_COLUMN=2
+        self.Y_TIME_COLUMN=1
