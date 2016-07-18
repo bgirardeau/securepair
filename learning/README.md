@@ -3,6 +3,7 @@
 ### Python
 ```bash
 pip install -r requirements.txt
+pip install -r seqmodels/requirements.txt
 ```
 
 ### Node
@@ -34,7 +35,5 @@ source data_pipeline.sh
 ###Train Neural Network
 To run neural net, use:
 ```bash
-python train.py ./data/
+python main.py ./data/mix_files
 ```
-To force use the cpu:
-```THEANO_FLAGS=device=cpu python train.py data``` (for cpu)
