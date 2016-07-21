@@ -10,6 +10,6 @@ class BestModel(WindowBasedModel):
 
         self.left_epsilon=0.05
         self.right_epsilon=0.05
-        self.only_positive=True
+        self.only_positive=False
         self.X_TIME_COLUMN=2
         self.Y_TIME_COLUMN=1
