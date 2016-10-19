@@ -392,7 +392,9 @@ SP.Crypto = (function (SP, window_crypto, nacl_factory) {
   var listenForPairing = function (readBytes, writeBytes, authenticatedMatch, callback) {
     var ecdhKey = generateECDHKey()
     var myRandom = getRandomBytes(SAS_RANDOM_SIZE)
-    var message = concatByteArrays(myRandom, ecdhKey.publicKey)
+    var id = new Uint8Array(1)
+    id[0] = 0
+    var message = concatByteArrays(id, concatByteArrays(myRandom, ecdhKey.publicKey))
     var myCommitment = makeCommitment(message)
 
     readBytes(function (err, theirCommitment) {
@@ -415,8 +417,8 @@ SP.Crypto = (function (SP, window_crypto, nacl_factory) {
             if (theirMessage === null) {
               return callback('error opening commitment')
             }
-            var theirRandom = theirMessage.subarray(0, SAS_RANDOM_SIZE)
-            var theirPublicKey = theirMessage.subarray(SAS_RANDOM_SIZE)
+            var theirRandom = theirMessage.subarray(1, SAS_RANDOM_SIZE + 1)
+            var theirPublicKey = theirMessage.subarray(SAS_RANDOM_SIZE + 1)
 
             var sharedKey = ecdhKey.computeSharedKey(theirPublicKey)
             var matchValue = new Uint8Array(SAS_RANDOM_SIZE)
@@ -437,7 +439,9 @@ SP.Crypto = (function (SP, window_crypto, nacl_factory) {
   var initiatePairing = function (readBytes, writeBytes, authenticatedMatch, callback) {
     var ecdhKey = generateECDHKey()
     var myRandom = getRandomBytes(SAS_RANDOM_SIZE)
-    var message = concatByteArrays(myRandom, ecdhKey.publicKey)
+    var id = new Uint8Array(1)
+    id[0] = 1
+    var message = concatByteArrays(id, concatByteArrays(myRandom, ecdhKey.publicKey))
     var myCommitment = makeCommitment(message)
     writeBytes(myCommitment.commitment, function (err) {
       if (err) {
@@ -459,8 +463,8 @@ SP.Crypto = (function (SP, window_crypto, nacl_factory) {
             if (theirMessage === null) {
               return callback('error opening commitment')
             }
-            var theirRandom = theirMessage.subarray(0, SAS_RANDOM_SIZE)
-            var theirPublicKey = theirMessage.subarray(SAS_RANDOM_SIZE)
+            var theirRandom = theirMessage.subarray(1, SAS_RANDOM_SIZE + 1)
+            var theirPublicKey = theirMessage.subarray(SAS_RANDOM_SIZE + 1)
 
             var sharedKey = ecdhKey.computeSharedKey(theirPublicKey)
             var matchValue = new Uint8Array(SAS_RANDOM_SIZE)

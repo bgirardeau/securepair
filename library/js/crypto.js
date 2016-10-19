@@ -129,8 +129,8 @@ SP.Crypto = (function (SP, window_crypto, nacl_factory) {
             if (theirMessage === null) {
               return callback('error opening commitment')
             }
-            var theirRandom = theirMessage.subarray(1, SAS_RANDOM_SIZE)
-            var theirPublicKey = theirMessage.subarray(SAS_RANDOM_SIZE)
+            var theirRandom = theirMessage.subarray(1, SAS_RANDOM_SIZE + 1)
+            var theirPublicKey = theirMessage.subarray(SAS_RANDOM_SIZE + 1)
 
             var sharedKey = ecdhKey.computeSharedKey(theirPublicKey)
             var matchValue = new Uint8Array(SAS_RANDOM_SIZE)
@@ -175,8 +175,8 @@ SP.Crypto = (function (SP, window_crypto, nacl_factory) {
             if (theirMessage === null) {
               return callback('error opening commitment')
             }
-            var theirRandom = theirMessage.subarray(1, SAS_RANDOM_SIZE)
-            var theirPublicKey = theirMessage.subarray(SAS_RANDOM_SIZE)
+            var theirRandom = theirMessage.subarray(1, SAS_RANDOM_SIZE + 1)
+            var theirPublicKey = theirMessage.subarray(SAS_RANDOM_SIZE + 1)
 
             var sharedKey = ecdhKey.computeSharedKey(theirPublicKey)
             var matchValue = new Uint8Array(SAS_RANDOM_SIZE)
