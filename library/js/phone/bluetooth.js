@@ -2,7 +2,7 @@
  * The Bluetooth module handles communication over the Bluetooth channel.
  *
  * Functions:
- *   SP.Bluetooth.create()
+ *   SP.Bluetooth.Phone.create()
  *     channel.scan(timeout, callback)
  *       callback(device)
  *     channel.connect(device, callback)

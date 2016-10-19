@@ -25,7 +25,7 @@ SP.Pair = (function (SP, AudioContext) {
     var audioChannel = SP.Audio.create({
       sampleRate: audioContext.sampleRate
     })
-    var btChannel = SP.Bluetooth.create()
+    var btChannel = SP.Bluetooth.Phone.create()
 
     pair.scan = btChannel.scan
     var sharedKey

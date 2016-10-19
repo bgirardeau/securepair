@@ -561,7 +561,7 @@ SP.Util = (function (SP) {
  * The Bluetooth module handles communication over the Bluetooth channel.
  *
  * Functions:
- *   SP.Bluetooth.create()
+ *   SP.Bluetooth.Phone.create()
  *     channel.scan(timeout, callback)
  *       callback(device)
  *     channel.connect(device, callback)
@@ -774,7 +774,7 @@ SP.Pair = (function (SP, AudioContext) {
     var audioChannel = SP.Audio.create({
       sampleRate: audioContext.sampleRate
     })
-    var btChannel = SP.Bluetooth.create()
+    var btChannel = SP.Bluetooth.Phone.create()
 
     pair.scan = btChannel.scan
     var sharedKey

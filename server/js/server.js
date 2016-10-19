@@ -856,10 +856,10 @@ SP.Listener = (function (SP, window_requestAnimationFrame) {
           var labelWidth = 60
 
           if (processor && lastCorrelation !== null && correlation !== null) {
-            if (correlation.votes >= 0.5) {
-              console.log('High vote: ' + correlation.votes)
+            if (correlation.vote >= 0.7) {
+              console.log('High vote: ' + correlation.vote)
               haveHighCorrelation++
-              if (highCorrelation === null || correlation.votes > highCorrelation.votes) {
+              if (highCorrelation === null || correlation.vote > highCorrelation.vote) {
                 highCorrelation = correlation
               }
             } else if (haveHighCorrelation > 0 && !found) {
@@ -903,12 +903,12 @@ SP.Listener = (function (SP, window_requestAnimationFrame) {
 
             var i = 1
             audioChannel.notes.forEach(function (note) {
-              var value = correlation.correlations[note]
-              var lastValue = lastCorrelation.correlations[note]
+              var value = correlation.info.correlations[0][note]
+              var lastValue = lastCorrelation.info.correlations[0][note]
               plot(i, note, lastValue, value)
               i++
             })
-            plot(i, 'detect', lastCorrelation.votes, correlation.votes)
+            plot(i, 'detect', lastCorrelation.vote, correlation.vote)
             plot(0, 'timing', lastCorrelation.elapsed, correlation.elapsed)
             x += 0.25
           }

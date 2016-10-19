@@ -70,6 +70,8 @@ var app = (function (SP, MIDI, $, AudioContext, document) {
         }
       })
 
+      SP.Log.setHandler(console.log.bind(console))
+
       SP.Bluetooth.Server.start(function (err) {
         if (err) console.log('error starting advertising')
       })
