@@ -42,7 +42,7 @@ SP.Listener = (function (SP, window_requestAnimationFrame) {
 
         audioChannel.createMatcher(bits, inputBlockSize, function (newMatcher) {
           processor = newMatcher
-          setTimeout(ready, 500)
+          setTimeout(ready, 1000)
         })
         matchCallback = callback
 

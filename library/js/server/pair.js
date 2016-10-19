@@ -44,7 +44,7 @@ SP.Pair = (function (SP, AudioContext) {
             return
           }
 
-          listener.match(bits, 6000, function (match) {
+          listener.match(bits, 8000, function (match) {
             if (match === null) {
               SP.Bluetooth.Server.send(new Buffer('failed'), function (err) {
                 matchCB(err, false)

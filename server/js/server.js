@@ -817,7 +817,7 @@ SP.Listener = (function (SP, window_requestAnimationFrame) {
 
         audioChannel.createMatcher(bits, inputBlockSize, function (newMatcher) {
           processor = newMatcher
-          setTimeout(ready, 500)
+          setTimeout(ready, 1000)
         })
         matchCallback = callback
 
@@ -965,7 +965,7 @@ SP.Pair = (function (SP, AudioContext) {
             return
           }
 
-          listener.match(bits, 6000, function (match) {
+          listener.match(bits, 8000, function (match) {
             if (match === null) {
               SP.Bluetooth.Server.send(new Buffer('failed'), function (err) {
                 matchCB(err, false)

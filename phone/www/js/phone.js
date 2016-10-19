@@ -817,9 +817,9 @@ SP.Pair = (function (SP, AudioContext) {
                     return
                   }
                   matchCB(null, SP.Util.bytesToString(message))
-                }, 2000)
+                }, 4000)
               })
-            }, 1000)
+            }, 2000)
           })
         }
 
